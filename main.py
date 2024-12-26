@@ -1,11 +1,24 @@
+def sort_on(dict):
+    return dict["count"]
+
 def main():
     with open("books/frankenstein.txt") as f:
         file_contents = f.read()
-    print(file_contents)
+
+    print("--- Begin report of books/frankenstein.txt ---\n")
     print(f"# of words: {num_words(file_contents)}")
 
     char_appear = num_char_appear(file_contents)
-    print(char_appear)
+    chars = []
+    for char in char_appear:
+        if char.isalpha():
+            chars.append({"char": char, "count": char_appear[char]})
+
+    chars.sort(reverse=True, key=sort_on)
+    for char in chars:
+        print(f"The '{char["char"]}' character was found {char["count"]} times")
+
+    print("--- End Report ---")
 
 def num_words(text):
     words = text.split()
