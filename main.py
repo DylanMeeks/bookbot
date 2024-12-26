@@ -14,7 +14,10 @@ def num_words(text):
 def num_char_appear(text):
     appearences = {}
     for char in text.lower():
-        appearences[char] += 1
+        if char in appearences:
+            appearences[char] += 1
+        else:
+            appearences[char] = 1
 
     return appearences
 
